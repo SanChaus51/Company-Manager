@@ -1,5 +1,12 @@
 import random
 
+info_characters = {"name": "oleg",
+                   "age": 20,
+                   "country": "Philippines" }
+
+if info_characters["age"] < 20:
+    print("ss")
+
 class Hero:
     def __init__(self, name, hp):
         self.name = name
