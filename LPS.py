@@ -7,6 +7,8 @@ info_characters = {"name": "oleg",
 if info_characters["age"] < 20:
     print("ss")
 
+print(info_characters["name"])
+
 class Hero:
     def __init__(self, name, hp):
         self.name = name
