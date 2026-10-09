@@ -1,60 +1,44 @@
-import random
+import random  # 🎲 Підключаємо модуль рандому
 
-info_characters = {"name": "oleg",
-                   "age": 20,
-                   "country": "Philippines" }
-
-if info_characters["age"] < 20:
-    print("ss")
-
-print(info_characters["name"])
 
 class Hero:
     def __init__(self, name, hp):
         self.name = name
         self.hp = hp
 
-
+    # ⚔️ Оновлений метод атаки. Тепер damage вираховується автоматично!
     def attack(self, enemy):
-        damage = random.randint(10, 30)
+        damage = random.randint(10, 30)  # Генеруємо випадковий удар від 10 до 30
         enemy.hp -= damage
-        print(f"⚔️⚔{self.name} вгатив {enemy.name} на {damage} урону!")
-
-    def heal(self, amount):
-        self.hp += amount
-        print(f"✨ {self.name} випив зілля і відновив {amount} hp!")
+        print(f"⚔️ {self.name} вгатив {enemy.name} на {damage} урону!")
 
 
-class Mage(Hero):
-    def __init__(self, name, hp, mana):
-        super().__init__(name, hp)
-        self.mana = mana
+# --- ЗОНА БИТВИ (Основний код без відступів) ---
 
-    def fireball(self, enemy):
-        if self.mana >= 20:
-            self.mana -= 20
-            damage = random.randint(30, 50)
-            enemy.hp -= damage
-            print(f"🔥 {self.name} випустив Фаєрбол у {enemy.name} на {damage} магічного урону! (Залишок мани: {self.mana})")
-        else:
-            print(f"❌ {self.name} хотів чаклувати, але закінчилася мана!")
-            self.attack(enemy)
-
-# persons
-hero1 = Mage("Akva", 100, 40)
+# Створюємо двох бійців (дамо обом по 100 HP для чесного бою)
+hero1 = Hero("Akva", 100)
 hero2 = Hero("Kazuma", 100)
 
-print("--- БИТВА ПОЧАЛАСЯ ---")
+print("--- 🏁 БИТВА ПОЧАЛАСЯ --- \n")
 
+# 🔄 Цикл працює автоматично, поки ОДВА ГЕРОЇ мають здоров'я більше нуля!
 while hero1.hp > 0 and hero2.hp > 0:
-    hero1.fireball(hero2)
 
+    # 1. Аква робить свій хід
+    hero1.attack(hero2)
+
+    # Перевіряємо, чи вижив Казума після удару, щоб відповісти
     if hero2.hp > 0:
         hero2.attack(hero1)
 
-    print(f"🩸 Стан: {hero1.name} [{hero1.hp} HP] | {hero2.name} [{hero2.hp} HP]\n")
+    # Виводимо поточний стан здоров'я після кожного раунду
+    # Якщо HP падає нижче 0, виведемо красивий 0 за допомогоюmax()
+    hp1 = max(0, hero1.hp)
+    hp2 = max(0, hero2.hp)
+    print(f"🩸 Стан: {hero1.name} [{hp1} HP] | {hero2.name} [{hp2} HP]\n")
 
+# --- СУДДІВСЬКА СЕКЦІЯ ---
 if hero1.hp > 0:
-    print(f"🏆 Переміг {hero1.name}!")
+    print(f"🏆 Переміг {hero1.name}! (Залишилось {hero1.hp} HP)")
 else:
-    print(f"🏆 Переміг {hero2.name}!")
+    print(f"🏆 Переміг {hero2.name}! (Залишилось {hero2.hp} HP)")
