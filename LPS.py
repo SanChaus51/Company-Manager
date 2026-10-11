@@ -1,5 +1,19 @@
 import random  # 🎲 Підключаємо модуль рандому
 
+setup_her = {
+    "name": "Oleg",
+    "age": 33,
+    "hp": 100
+}
+
+print(setup_her)
+
+setup_hero = {}
+
+#idk latter add somethink
+
+
+
 
 class Hero:
     def __init__(self, name, hp):
@@ -42,3 +56,10 @@ if hero1.hp > 0:
     print(f"🏆 Переміг {hero1.name}! (Залишилось {hero1.hp} HP)")
 else:
     print(f"🏆 Переміг {hero2.name}! (Залишилось {hero2.hp} HP)")
+
+
+
+
+
+
+
