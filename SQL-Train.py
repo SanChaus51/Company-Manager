@@ -57,6 +57,14 @@ cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('shop', 3, 44);")
 cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('PC', 11, 124);")
 con.commit()
 
+cursor.execute('''
+SELECT * FROM newUp ORDER BY sum;''')
+
+pen_cil = cursor.fetchall()
+
+print("GAY your loot is sortett for up GAY")
+for fel in pen_cil:
+    print(fel)
 print("📦 Все створено та додано ідеально! Перевіряй DB Browser!")
 
 con.close()  # ГОЛОВНИЙ АТРИБУТ (закрити міст)
