@@ -7,6 +7,7 @@ cursor = con.cursor()
 cursor.execute("DROP TABLE IF EXISTS items;")
 cursor.execute("DROP TABLE IF EXISTS orders;")
 cursor.execute("DROP TABLE IF EXISTS newUp;")
+cursor.execute("DROP TABLE IF EXISTS TnUP;")
 
 con.commit()
 
@@ -37,6 +38,17 @@ CREATE TABLE IF NOT EXISTS newUp (
     sum INTEGER
 );
 ''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS TnUP (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name_car TEXT,
+    price_car INTEGER,
+    quantity_car INTEGER,
+    count_car INTEGER
+);
+''')
+
 con.commit()
 
 # ⬇️ 3. ДОДАЄМО ТОВАРИ В МАГАЗИН (Тут усе було супер)
@@ -55,16 +67,30 @@ cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('car', 4, 67);")
 cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('house', 1, 14);")
 cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('shop', 3, 44);")
 cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('PC', 11, 124);")
+
+cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('BMW', 20000, 8, 200);")
+cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Mercedes', 22000, 7, 600);")
+cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Audi', 21000, 9, 170);")
 con.commit()
 
 cursor.execute('''
-SELECT * FROM newUp ORDER BY sum;''')
+SELECT * FROM newUp ORDER BY sum DESC;''')
 
 pen_cil = cursor.fetchall()
 
 print("GAY your loot is sortett for up GAY")
 for fel in pen_cil:
     print(fel)
+
+cursor.execute('''
+SELECT * FROM TnUp ORDER BY price_car DESC;''')
+
+mashinki_list = cursor.fetchall()
+
+print("--- CARS MORE EXPENSIVE ---")
+for fel in mashinki_list:
+    print(fel)
 print("📦 Все створено та додано ідеально! Перевіряй DB Browser!")
+
 
 con.close()  # ГОЛОВНИЙ АТРИБУТ (закрити міст)
