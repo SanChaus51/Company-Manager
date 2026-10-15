@@ -8,6 +8,7 @@ cursor.execute("DROP TABLE IF EXISTS items;")
 cursor.execute("DROP TABLE IF EXISTS orders;")
 cursor.execute("DROP TABLE IF EXISTS newUp;")
 cursor.execute("DROP TABLE IF EXISTS TnUP;")
+cursor.execute("DROP TABLE IF EXISTS DUOnUP;")
 
 con.commit()
 
@@ -49,6 +50,15 @@ CREATE TABLE IF NOT EXISTS TnUP (
 );
 ''')
 
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS DUOnUP (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nam TEXT,
+    region TEXT,
+    people INTEGER
+);
+''')
+
 con.commit()
 
 # ⬇️ 3. ДОДАЄМО ТОВАРИ В МАГАЗИН (Тут усе було супер)
@@ -71,6 +81,10 @@ cursor.execute("INSERT INTO newUp (named, fix, sum) VALUES ('PC', 11, 124);")
 cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('BMW', 20000, 8, 200);")
 cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Mercedes', 22000, 7, 600);")
 cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Audi', 21000, 9, 170);")
+
+cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Kyiv', 'k', 180000);")
+cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Lviv', 'l', 800000);")
+cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Odesa', 'o', 1350000);")
 con.commit()
 
 cursor.execute('''
