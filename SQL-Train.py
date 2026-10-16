@@ -82,7 +82,7 @@ cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) 
 cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Mercedes', 22000, 7, 600);")
 cursor.execute("INSERT INTO TnUP (name_car, price_car, quantity_car, count_car) VALUES ('Audi', 21000, 9, 170);")
 
-cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Kyiv', 'k', 180000);")
+cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Kyiv', 'k', 1800000);")
 cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Lviv', 'l', 800000);")
 cursor.execute("INSERT INTO DUOnUP (nam, region, people) VALUES ('Odesa', 'o', 1350000);")
 con.commit()
@@ -104,7 +104,15 @@ mashinki_list = cursor.fetchall()
 print("--- CARS MORE EXPENSIVE ---")
 for fel in mashinki_list:
     print(fel)
-print("📦 Все створено та додано ідеально! Перевіряй DB Browser!")
 
+cursor.execute('''
+SELECT * FROM DUOnUp ORDER BY people DESC;''')
+
+city_list = cursor.fetchall()
+
+print("==- city in Ukraine -==")
+for fel in city_list:
+    print(fel)
+print("📦 Все створено та додано ідеально! Перевіряй DB Browser!")
 
 con.close()  # ГОЛОВНИЙ АТРИБУТ (закрити міст)
